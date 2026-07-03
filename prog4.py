@@ -13,7 +13,7 @@ aluno = {
 }
 print(aluno["nome"])         # João
 aluno["idade"] = 23          # Atualiza valor
-
+print(aluno)
 
 # ==================== TUPLE (Tupla) - imutável ====================
 coordenadas = (10, 20)

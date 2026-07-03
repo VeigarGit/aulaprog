@@ -1,6 +1,6 @@
 # Exemplo prático: Sistema de liberação de acesso
-idade = 25
-tem_carteira = True
+idade = 20
+tem_carteira = False
 tem_multa_pendente = False
 
 # Operador AND (todas as condições precisam ser True)

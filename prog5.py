@@ -11,7 +11,7 @@ print(f"Número sorteado: {escolhido}")
 # O framework controla o fluxo (Inversão de Controle).
 # Exemplo com Flask (você só define as rotas):
 
-"""
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class MeuHandler(BaseHTTPRequestHandler):
@@ -30,4 +30,3 @@ servidor = HTTPServer(("localhost", 5000), MeuHandler)
 
 print("Servidor rodando em http://localhost:5000")
 servidor.serve_forever()
-"""

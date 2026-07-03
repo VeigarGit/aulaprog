@@ -18,7 +18,10 @@ class Aluno:
 
 aluno = Aluno("Maria", [7, 8, 9])
 print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
-
+aluno = Aluno("Pedro", [7, 8, 9])
+print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
+aluno = Aluno("João", [7, 8, 9])
+print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
 
 # ==================== 3. Paradigma Funcional ====================
 from functools import reduce
