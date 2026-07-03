@@ -12,15 +12,22 @@ print(f"Número sorteado: {escolhido}")
 # Exemplo com Flask (você só define as rotas):
 
 """
-from flask import Flask
+from http.server import HTTPServer, BaseHTTPRequestHandler
 
-app = Flask(__name__)
+class MeuHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        if self.path == "/":
+            self.send_response(200)
+            self.send_header("Content-type", "text/plain; charset=utf-8")
+            self.end_headers()
+            self.wfile.write("Olá, mundo!".encode("utf-8"))
+        else:
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write("Página não encontrada".encode("utf-8"))
 
-@app.route("/")
-def home():
-    return "Olá, mundo!"
+servidor = HTTPServer(("localhost", 5000), MeuHandler)
 
-if __name__ == "__main__":
-    app.run()
+print("Servidor rodando em http://localhost:5000")
+servidor.serve_forever()
 """
-# Aqui o Flask decide quando chamar sua função home()
