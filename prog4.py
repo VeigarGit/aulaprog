@@ -18,7 +18,7 @@ print(aluno)
 # ==================== TUPLE (Tupla) - imutável ====================
 coordenadas = (10, 20)
 # coordenadas[0] = 15  # Erro! Tupla não pode ser alterada
-
+print(coordenadas)
 
 # ==================== SET (Conjunto) ====================
 numeros_unicos = {1, 2, 3, 3, 4}

@@ -15,13 +15,14 @@ class Aluno:
     
     def calcular_media(self):
         return sum(self.notas) / len(self.notas)
+    
 
 aluno = Aluno("Maria", [7, 8, 9])
 print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
-aluno = Aluno("Pedro", [7, 8, 9])
-print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
-aluno = Aluno("João", [7, 8, 9])
-print(f"Média de {aluno.nome}: {aluno.calcular_media()}")
+aluno1 = Aluno("Pedro", [7, 10, 9])
+print(f"Média de {aluno1.nome}: {aluno1.calcular_media()}")
+aluno2 = Aluno("João", [7, 9, 9])
+print(f"Média de {aluno2.nome}: {aluno2.calcular_media()}")
 
 # ==================== 3. Paradigma Funcional ====================
 from functools import reduce
