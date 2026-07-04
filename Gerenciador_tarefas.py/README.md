@@ -1,40 +1,50 @@
-## trabalho da aula 1 do intensivão de desenvolvimento 
-
+## Trabalho da Aula 1 - Intensivão de Desenvolvimento
 ## Banco de Dados
-Para a realização do banco de dados usei como base o código exemplo "gerenciador_banco.py" localizado na pasta loja para a realização do banco de dados do gerenciador de tarefas. Estudei o basico da nomeclatura de SQlite3 para defenir as funções e utilizando e entendi o funcionamento de um cursor e seus comandos de executar. Funções do sqlite3,como o connect() que cria o arquivo se ele não existir, e o cursor é o objeto que executa os comandos SQL. Por meio da IA(Gemini web) aprendi uma forma de segurança ao utilizar o placeholder "?" e também a configuração do `row_factory` para permitir o acesso aos resultados do banco por meio do nome das colunas, melhorando a legibilidade do código no restante da aplicação. Aprendi também que Commit salva as alterações em cada função e o close fecha a função para não travar no arquivo, e pelo que entendi, o método execute() do sqlite3 exige que os argumentos dos placeholders (?) sejam passados dentro de uma tupla ou lista e para não dar erro em Python, se você escrever apenas (status_filter), o Python interpreta apenas como parênteses envolvendo uma string, para isso defini que aquilo é uma tupla de um único elemento, colocando a vírgula no final (status_filter,).  
 
-Funções que adaptei da loja para os parametros definidos no comando do trabalho:
-`init_db()`: Inicializa o banco de dados e cria a tabela `tarefas` caso ela ainda não exista no sistema.
-`adicionar_tarefa(titulo, descricao)`: Insere uma nova tarefa com o status inicial `pendente` e registra automaticamente o carimbo de data/hora atual.
-`get_tarefas(status_filter)`: Recupera as tarefas do banco de dados ordenadas pelas mais recentes. Permite filtragem dinâmica por status (`pendente` ou `concluida`).
-`atualizar_status(tarefa_id, status)`: Modifica o status de uma tarefa específica utilizando o seu ID identificador.
-`deletar_tarefa(tarefa_id)`: Remove permanentemente uma tarefa do banco de dados pelo ID.
+Para a realização do banco de dados, usei como base o código exemplo gerenciador_banco.py. Estudei o básico da nomenclatura do SQLite3, compreendendo que o connect() cria o arquivo caso não exista e que o cursor é o objeto que executa os comandos SQL. Aprendi a utilizar placeholders (?) para segurança contra SQL Injection e a configuração do row_factory para acessar os dados pelos nomes das colunas, facilitando a legibilidade.
 
-## Código princial (main.py)
-Para realizar o sistema pensei em que através de uma plataforma web realizamos um pedido e o sistema busca a informação na base de dados e traz a resposta de volta para web. Para solução usei como base duas funções a função get foi criada para pegar a informação realizando os comandos simples que serão o de se a tarefa esta completa ou não e exclui-la se requisitado, e a outra função foi a post em que guardo a informação colocada na tarefa sendo usado exclusivamente quando o usuário preenche o formulário para adicionar uma nova tarefa. 
+Funções adaptadas:
 
-Imports: 
-Para fazer a o funcionameto é importado o protocolo HTTP reponsável pelo processamento dos pedidos no navegador buscando e processando a logica do backend, enquanto o  socketserver é o canal de comunicação das solicitações. 
+'init_db()': Inicializa o banco e cria a tabela tarefas.
+'adicionar_tarefa(titulo, descricao)': Insere uma nova tarefa.
+'get_tarefas(status_filter)': Recupera tarefas com suporte a filtros dinâmicos.
+'atualizar_status(tarefa_id, status)': Altera o status da tarefa.
+'deletar_tarefa(tarefa_id)': Remove uma tarefa.
+'get_tarefa(tarefa_id)': Busca uma tarefa única (usada na edição).
+'editar_tarefa(tarefa_id, titulo, descricao)': Atualiza o conteúdo de uma tarefa existente.
 
-Pesquisando formas de organizar e criar essa conexão entre a linguagem pythone e HTML, com ajuda da IA encontrei o urllib.parse que é um módulo embutido na biblioteca padrão do Python usado para manipular URLs organizando esses endereços e analisando-os. Ele divide o endereço em componentes para melhor analise deixando mais organizado os ednereços. Link da documentação oficial: https://www.google.com/url?sa=i&source=web&rct=j&url=https://docs.python.org/pt-br/3/library/urllib.parse.html&ved=2ahUKEwiNgavYwbmVAxXfuZUCHTUiNKgQy_kOegoIAggACAAIDxAC&opi=89978449&cd&psig=AOvVaw3zXou_srrLO7WfW1AuXwnw&ust=1783271375643000
+## Código Principal (main.py) e Roteamento (rotas.py)
 
-Como forma de deixar o frontend mais dinâmico estudei sobre a biblioteca Jinja2 em que posso utilizar fundamentos do Python no HTML montando a página antes de enviá-la pronta para o navegador do usuário. 
-Link da documentação oficial: https://jinja.palletsprojects.com/en/stable/
+Para aprimorar a organização e evitar a repetição de código, evoluí a arquitetura para o padrão de Separação de Responsabilidades, pois não sabia sobre o conhecimento das rotas e adicionei um novo arquivo para melhor organização. 
 
-## Frontend 
-A interface gráfica (arquivo `index.html`) marca o meu primeiro contato prático com o desenvolvimento Front-end. Para viabilizar a criação desta interface de forma ágil e focar no aprendizado da lógica de integração com o Back-end (Python), utilizei ferramentas de Inteligência Artificial como suporte na geração do código HTML e CSS.
+'main.py': Tornou-se "compacto". Sua única responsabilidade é iniciar o servidor HTTP e o banco de dados. Ele atua como o "dono do restaurante", mantendo a infraestrutura funcionando.
 
-Eu aprendi e apliquei com a ajuda da IA neste Front-end, a estruturação HTML5, criação de formulários (`<form>`) estruturados corretamente para enviar requisições do tipo `POST` para o servidor Python.  Estilização com Bootstrap, utilizando o Bootstrap para aplicar um design limpo e responsivo rapidamente, usando classes prontas para tabelas e botões. Integração com Jinja2, compreendendo como utilizar a sintaxe do Jinja2 (`{% for %}`, `{% if %}`, `{{ variavel }}`) direto no HTML para gerar listas dinâmicas e renderizar elementos condicionais. No entanto, foi minha primeira vez e utilizei a inteligencia artifical para a geração do codigo.  
+'rotas.py': Este é o novo cérebro do sistema. Ele contém a classe GerenciadorTarefas (o Handler), que processa as requisições, e os Controladores. O roteamento é feito de forma dinâmica através de dicionários (ROTAS_GET e ROTAS_POST), o que torna a adição de novas funcionalidades muito mais simples.
 
-## Estrutura do Projeto
+Imports utilizados:
 
- `main.py`: O coração do projeto. Contém as rotas, a lógica do servidor HTTP e a conexão entre o front-end e o banco de dados.
- `database.py`: Módulo responsável por interagir com os dados (adicionar, buscar, atualizar e deletar).
- `Front_end/index.html`: O template HTML que recebe as variáveis dinâmicas injetadas pelo Jinja2.
+    http.server e socketserver: Para o servidor web.
 
-## Para executar o projeto
+    urllib.parse: Para manipular e organizar as rotas e os parâmetros das URLs.
 
-1. Certifique-se de ter o Python na máquina.
-2. Instale a biblioteca Jinja2 (caso não tenha):
-   ```bash
-   pip install Jinja2
+    Jinja2: Para renderizar dinamicamente o HTML com os dados do banco.
+
+## Frontend
+
+A interface foi construída com foco em agilidade e integração. Utilizei a inteligencia artificial para conseguir realizar essa tarefa 
+
+Estrutura: HTML5 estruturado com Bootstrap para design responsivo.
+
+Dinâmica: Utilizamos o Jinja2 para injetar os dados do banco na tabela ({% for %}, {% if %}).
+
+Edição "Inline": Implementamos a edição das tarefas diretamente na tabela do index.html. Cada linha da tabela é um formulário, permitindo alterar título e descrição e salvar a edição sem a necessidade de uma nova página, mantendo a experiência do usuário fluida e o código limpo.
+
+## Estrutura Atualizada do Projeto
+
+main.py: Inicializa o servidor.
+rotas.py: Contém a classe GerenciadorTarefas, as rotas e a lógica de negócio (controladores).
+database.py: Gerencia exclusivamente a comunicação com o SQLite.
+Front_end/index.html: Template dinâmico com o formulário de listagem e edição das tarefas.
+
+## Sobre o desenvolvimento
+O desenvolvimento deste projeto foi realizado com o suporte de Inteligência Artificial, principalmente na parte de frontend na qual nunca tive contato nenhum, por mais que o descobrimento da bibliotca Jinja2 facilitou um pouco meu entendimento para o frontend, ainda tive dificuldades que foram sanadas pelo uso da IA. Busquei utilizar a IA como uma ferramenta de suporte técnico, auxiliando na compreensão de conceitos, na estrutura do código Python aonde tava errando, no uso e descobrimento de bibliotecas, e na implementação das classes do servidor HTTP. Busquei durante este processo não apenas entregar a funcionalidade, mas garantir que eu pudesse compreender a lógica de integração e a arquitetura do sistema, servindo como base para meus próximos passos. Irei correr átras do aprofundamento técnico da área. 
