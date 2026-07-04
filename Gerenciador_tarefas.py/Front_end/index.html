@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Tarefas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* CSS manual e simples para dar uma cara de projeto de estudante */
+        body { padding: 20px; }
+        .tarefa-riscada { text-decoration: line-through; color: #888; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Gerenciador de Tarefas</h2>
+    <hr>
+
+    <form action="/add" method="POST" class="mb-4">
+        <label>Título:</label>
+        <input type="text" name="titulo" required>
+        
+        <label>Descrição:</label>
+        <input type="text" name="descricao">
+        
+        <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+    </form>
+
+    <p>
+        Filtros: 
+        <a href="/">Todas</a> | 
+        <a href="/?filter=pendente">Pendentes</a> | 
+        <a href="/?filter=concluida">Concluídas</a>
+    </p>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Tarefa</th>
+                <th>Data de Criação</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+           <tbody>
+            {% for t in tarefas %}
+            <tr>
+                <form action="/edit" method="POST">
+                    <input type="hidden" name="id" value="{{ t.id }}">
+                    
+                    <td>
+                        <input type="text" name="titulo" value="{{ t.titulo }}" class="form-control form-control-sm" required>
+                        <input type="text" name="descricao" value="{{ t.descricao }}" class="form-control form-control-sm mt-1">
+                    </td>
+                    <td>{{ t.data_criacao }}</td>
+                    <td>{{ t.status }}</td>
+                    <td>
+                        <button type="submit" class="btn btn-sm btn-primary">Salvar</button>
+                        
+                        {% if t.status == 'pendente' %}
+                            <a href="/complete?id={{ t.id }}" class="btn btn-sm btn-success">Concluir</a>
+                        {% endif %}
+                        
+                        <a href="/delete?id={{ t.id }}" class="btn btn-sm btn-danger">Excluir</a>
+                    </td>
+                </form>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">Nenhuma tarefa encontrada.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
