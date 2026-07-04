@@ -86,8 +86,8 @@ class GerenciadorHandler(BaseHTTPRequestHandler):
             corpo = self.rfile.read(tamanho).decode("utf-8")
             dados = parse_qs(corpo)
             titulo = dados["titulo"][0]
-            descricao = dados["descricao"][0]
-            inserir_tarefas(titulo,descricao,datetime.now(), None, None)
+            descricao = dados.get("descricao",[""])[0]
+            inserir_tarefas(titulo,descricao,datetime.now().isoformat(), None, None)
         elif self.path.startswith("/concluir"):
             tarefa_id = int(self.path.split("/")[-1])
             atualizar_status_tarefa(tarefa_id, "concluida")
@@ -100,7 +100,7 @@ class GerenciadorHandler(BaseHTTPRequestHandler):
             corpo = self.rfile.read(tamanho).decode("utf-8")
             dados = parse_qs(corpo)
             titulo = dados["titulo"][0]
-            descricao = dados["descricao"][0]
+            descricao = dados.get("descricao",[""])[0]
             editar_tarefa(tarefa_id, titulo, descricao)
         self.send_response(303)
         self.send_header("Location", "/")
