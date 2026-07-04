@@ -62,6 +62,17 @@ def listar_tarefas(status=None):
 
     conn.close()
     return tarefas
+
+def buscar_tarefa_por_id(id):
+    conn = conectar_banco()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT * FROM tarefas WHERE id = ?", (id,))
+    linha = cursor.fetchone()
+
+    conn.close()
+    return dict(linha) if linha else None
+
 def atualizar_status_tarefa(id, novo_status):
     conn = conectar_banco()
     cursor = conn.cursor()
