@@ -12,4 +12,15 @@ Nessa etapa utilizei o código main para usar as funções que criei nos outros 
 
 Nesse código precisei utilizar IA para elaborar o front end, não tenho famiiaridade com as ferramentas e a sintaxe de front. Ele atua como intermediário entre o usuário e o database, lidando com as requisações e atualiações do banco de dados que foram feitas pelo usuário.
 
+# Pré-requisitos:
 
+1. Ter python instalado na máquina;
+2. Clonar o repositório mantendo a organização atual;
+3. Ao rodar o provamain.py, usar o navegador para acessar o localhost indicado no terminal.
+
+# Bibliotecas e Framework utilizados:
+
+1. http.server
+2. sqlite3
+3. ​urllib.parse
+4. Bootstrap 5
