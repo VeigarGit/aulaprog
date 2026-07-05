@@ -1,4 +1,4 @@
-# Task Manager (Python + SQLite)
+# Task Manager : Python + SQLite
 
 Sistema de gerenciamento de tarefas desenvolvido em Python
 ---
@@ -16,24 +16,49 @@ Sistema de gerenciamento de tarefas desenvolvido em Python
 
 ## Estrutura do Projeto
 C:.
-│── main.py
-│── readme.md
+│   main.py
+│   readme.md
+│   __init__.py
 │
-├── controllers
-│ └── tarefas_controller.py
+├───controllers
+│   │   tarefas_controller.py
+│   │   __init__.py
+│   │
+│   └───__pycache__
+│           tarefas_controller.cpython-314.pyc
+│           __init__.cpython-314.pyc
 │
-├── entidades
-│ ├── tarefa.py
-│ └── tarefas_use_cases.py
+├───entidades
+│   │   tarefa.py
+│   │   tarefas_use_cases.py
+│   │   __init__.py
+│   │
+│   └───__pycache__
+│           tarefa.cpython-314.pyc
+│           tarefas_use_cases.cpython-314.pyc
+│           __init__.cpython-314.pyc
 │
-├── infra
-│ ├── database_interface.py
-│ └── sqlite_database.py
+├───infra
+│   │   database_interface.py
+│   │   sqlite_database.py
+│   │   __init__.py
+│   │
+│   └───__pycache__
+│           database_interface.cpython-314.pyc
+│           sqlite_database.cpython-314.pyc
+│           __init__.cpython-314.pyc
 │
-└── repositorios
-├── local_repo.py
-├── repository.py
-└── sqlite_repo.py
+└───repositorios
+    │   local_repo.py
+    │   repository.py
+    │   sqlite_repo.py
+    │   __init__.py
+    │
+    └───__pycache__
+            local_repo.cpython-314.pyc
+            repository.cpython-314.pyc
+            sqlite_repo.cpython-314.pyc
+            __init__.cpython-314.pyc
 
 ## Um pouco da Arquitetura
 
@@ -50,16 +75,14 @@ Tecnologias
 - SQLite
 
 
-## ▶️ Como executar
+## Como executar
 
 1. Clone o projeto:
 ```bash
-git clone
-```bash
-cd task-manager
+git clone https://github.com/VeigarGit/aulaprog.git
 
 2. Acesse a pasta do projeto:
+cd task-manager
 
 3. Dentro do Diretório do Projeto:
-```bash
 python main.py
