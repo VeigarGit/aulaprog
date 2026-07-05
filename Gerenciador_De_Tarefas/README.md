@@ -24,3 +24,7 @@ Nesse código precisei utilizar IA para elaborar o front end, não tenho famiiar
 2. sqlite3
 3. ​urllib.parse
 4. Bootstrap 5
+
+# Notas pessoais sobre a atividade:
+
+Foi o primeiro projeto que tive total controle desde o back até o front,  em relação ao back consegui entender bem os conceitos e as aplicações, penei mas entendi, infelizmente sobre ao front precisei recorrer a IA, no geral a avaliação foi bem útil pra ver onde tenho mais dificuldades ou preciso me aprofundar mais nos estudos.
