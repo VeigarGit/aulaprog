@@ -3,7 +3,7 @@ import database
 from urllib.parse import urlparse, parse_qs
 from jinja2 import Environment, FileSystemLoader
 
-env = Environment(loader=FileSystemLoader('Front_end'))
+env = Environment(loader=FileSystemLoader(('Front_end')))
 
 def redirecionar(handler, destino):
     """Função auxiliar para redirecionamento HTTP"""

@@ -6,12 +6,19 @@ Para a realização do banco de dados, usei como base o código exemplo gerencia
 Funções adaptadas:
 
 'init_db()': Inicializa o banco e cria a tabela tarefas.
+
 'adicionar_tarefa(titulo, descricao)': Insere uma nova tarefa.
+
 'get_tarefas(status_filter)': Recupera tarefas com suporte a filtros dinâmicos.
+
 'atualizar_status(tarefa_id, status)': Altera o status da tarefa.
+
 'deletar_tarefa(tarefa_id)': Remove uma tarefa.
+
 'get_tarefa(tarefa_id)': Busca uma tarefa única (usada na edição).
+
 'editar_tarefa(tarefa_id, titulo, descricao)': Atualiza o conteúdo de uma tarefa existente.
+
 
 ## Código Principal (main.py) e Roteamento (rotas.py)
 
@@ -42,9 +49,13 @@ Edição "Inline": Implementamos a edição das tarefas diretamente na tabela do
 ## Estrutura Atualizada do Projeto
 
 main.py: Inicializa o servidor.
+
 rotas.py: Contém a classe GerenciadorTarefas, as rotas e a lógica de negócio (controladores).
+
 database.py: Gerencia exclusivamente a comunicação com o SQLite.
+
 Front_end/index.html: Template dinâmico com o formulário de listagem e edição das tarefas.
+
 
 ## Sobre o desenvolvimento
 O desenvolvimento deste projeto foi realizado com o suporte de Inteligência Artificial, principalmente na parte de frontend na qual nunca tive contato nenhum, por mais que o descobrimento da bibliotca Jinja2 facilitou um pouco meu entendimento para o frontend, ainda tive dificuldades que foram sanadas pelo uso da IA. Busquei utilizar a IA como uma ferramenta de suporte técnico, auxiliando na compreensão de conceitos, na estrutura do código Python aonde tava errando, no uso e descobrimento de bibliotecas, e na implementação das classes do servidor HTTP. Busquei durante este processo não apenas entregar a funcionalidade, mas garantir que eu pudesse compreender a lógica de integração e a arquitetura do sistema, servindo como base para meus próximos passos. Irei correr átras do aprofundamento técnico da área. 
